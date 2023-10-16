@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Square</title>
+    <style>
+        .tabuleiro {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            width: 50%;
+            height: 50vh;
+            margin: 0 auto;
+            border: 2px solid #000;
+        }
+
+        .quadrado {
+            background-color: white;
+            border: 1px solid #ccc;
+            cursor: pointer; 
+        }
+    </style>
+</head>
+<body>
+    <hr>
+    <label>Números de Quadrados: </label>
+    <input type="number" id="numQuadrados">
+    <button onclick="gerar()">Gerar</button>
+    <button onclick="apagar()">Apagar</button>
+    <button onclick="resetar()">Resetar</button><br><br>
+    <div class="tabuleiro"></div>
+    <script>
+        function criarQuadrados(numeroDeQuadrados) {
+            const tabuleiro = document.querySelector('.tabuleiro');
+            
+            for (let i = 0; i < numeroDeQuadrados; i++) {
+                const quadrado = document.createElement('div');
+                quadrado.className = 'quadrado';
+                tabuleiro.appendChild(quadrado);
+
+                quadrado.addEventListener('click', () => {
+                    if(quadrado.style.backgroundColor == 'red'){
+                        quadrado.style.backgroundColor = 'white'
+                    }else{
+                        quadrado.style.backgroundColor = 'red';
+                    }
+                });
+            }
+        }
+
+        function gerar(){
+            const quadrados = document.getElementById("numQuadrados");
+            criarQuadrados(quadrados.value);
+        }
+
+        function apagar() {
+            const tabuleiro = document.querySelector('.tabuleiro');
+            const quadrado = tabuleiro.querySelector('.quadrado');
+            const quadrados = document.getElementById("numQuadrados");
+            tabuleiro.removeChild(quadrado);
+            quadrados.value = parseInt(quadrados.value) - 1;
+        }
+
+        function resetar(){
+            const quadrados = document.getElementsByClassName("quadrado");
+            const tabuleiro = document.querySelector('.tabuleiro');
+            const quadradosArray = Array.from(quadrados);
+            const quadrado = document.getElementById("numQuadrados");
+            quadradosArray.forEach(quadrado => {
+                tabuleiro.removeChild(quadrado);
+            });
+            quadrado.value = 0; 
+        }
+    </script>
+</body>
+</html>
