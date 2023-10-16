@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jogo Da Velha</title>
+        <style>
+            .container{
+                align-items: center;
+                padding-left: 50vh;
+            }
+            .quadrado{
+                width: 100px;
+                height: 100px;
+                cursor: pointer;
+                font-family: Arial, sans-serif;
+                font-size: 80px;
+                text-align: center;
+            }
+            .quadrado:hover{
+                background-color: rgb(250, 244, 244);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Jogo da Velha</h1>
+            <table class="jogo" border="1">
+                <tr>
+                    <td class="quadrado" onclick="jogar(this)"></td>
+                    <td class="quadrado" onclick="jogar(this)"></td>
+                    <td class="quadrado" onclick="jogar(this)"></td>
+                </tr>
+                <tr>
+                    <td class="quadrado" onclick="jogar(this)"></td>
+                    <td class="quadrado" onclick="jogar(this)"></td>
+                    <td class="quadrado" onclick="jogar(this)"></td>
+                </tr>
+                <tr>
+                    <td class="quadrado" onclick="jogar(this)"></td>
+                    <td class="quadrado" onclick="jogar(this)"></td>
+                    <td class="quadrado" onclick="jogar(this)"></td>
+                </tr>
+            </table><br>
+            <button onclick="restart()">Reiniciar</button>
+        </div>     
+        <script>
+            let jogador = "x";
+            function jogar(quadrado){
+                if(quadrado.innerHTML == ""){
+                    quadrado.innerHTML = jogador;
+                    if(jogador == "x"){
+                        jogador = "o";
+                    }else{
+                        jogador = "x";
+                    }
+                }
+            }
+
+            function restart(){
+                window.location.reload();
+            }
+        </script>
+    </body>
+</html>
